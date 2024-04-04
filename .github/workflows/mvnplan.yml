@@ -1,0 +1,20 @@
+name: apr/mvnplan
+on:
+#   # The shortest interval you can run scheduled workflows is once every 5 minutes.
+#   period: '180'
+jobs:
+  Default-Stage-Default-Job:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.0
+    - uses: actions/setup-java@v4.0.0
+      with:
+        distribution: zulu
+        java-version: '11'
+    - name: Run Maven
+      run: mvn package
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2.12.0
+      if: always()
+      with:
+        junit_files: "**/target/surefire-reports/*.xml"
