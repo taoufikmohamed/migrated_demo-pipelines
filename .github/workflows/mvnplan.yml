@@ -1,5 +1,6 @@
 name: apr/mvnplan
 on:
+ push:
 #   # The shortest interval you can run scheduled workflows is once every 5 minutes.
 #   period: '180'
 jobs:
